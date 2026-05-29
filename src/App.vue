@@ -18,11 +18,7 @@ const menuOpen = ref(false)
     </div>
   </nav>
 
-  <router-view v-slot="{ Component, route }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" :key="route.path" />
-    </transition>
-  </router-view>
+  <router-view />
 
   <footer class="footer">
     <p>// &copy; 2026 LEMON.BLOG // STATUS: ONLINE</p>
