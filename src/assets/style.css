@@ -17,6 +17,67 @@
   --radius-sm: 6px;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+
+  /* Syntax highlighting */
+  --hljs-bg: #f8f8f8;
+  --hljs-text: #24292e;
+  --hljs-keyword: #d73a49;
+  --hljs-string: #032f62;
+  --hljs-comment: #6a737d;
+  --hljs-function: #6f42c1;
+  --hljs-number: #005cc5;
+  --hljs-title: #6f42c1;
+  --hljs-attr: #005cc5;
+  --hljs-tag: #22863a;
+  --hljs-name: #22863a;
+  --hljs-meta: #e36209;
+  --hljs-builtin: #6f42c1;
+  --hljs-literal: #005cc5;
+  --hljs-type: #005cc5;
+  --hljs-selector-class: #22863a;
+  --hljs-selector-tag: #22863a;
+  --hljs-addition: #144212;
+  --hljs-addition-bg: #e6ffed;
+  --hljs-deletion: #600d14;
+  --hljs-deletion-bg: #ffeef0;
+}
+
+html.dark {
+  --bg: #1b1b1b;
+  --bg-card: #2a2a2a;
+  --text: #e0e0e0;
+  --text-muted: #999999;
+  --accent: #e8a090;
+  --accent-hover: #f0b8a8;
+  --accent-light: #3a2520;
+  --green: #5cdb95;
+  --border: #3d3d3d;
+  --border-light: #333333;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.25);
+  --shadow: 0 2px 16px rgba(0,0,0,0.35);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.45);
+
+  --hljs-bg: #1e1e1e;
+  --hljs-text: #d4d4d4;
+  --hljs-keyword: #569cd6;
+  --hljs-string: #ce9178;
+  --hljs-comment: #6a9955;
+  --hljs-function: #dcdcaa;
+  --hljs-number: #b5cea8;
+  --hljs-title: #dcdcaa;
+  --hljs-attr: #9cdcfe;
+  --hljs-tag: #569cd6;
+  --hljs-name: #9cdcfe;
+  --hljs-meta: #d7ba7d;
+  --hljs-builtin: #c586c0;
+  --hljs-literal: #b5cea8;
+  --hljs-type: #4ec9b0;
+  --hljs-selector-class: #d7ba7d;
+  --hljs-selector-tag: #569cd6;
+  --hljs-addition: #b5cea8;
+  --hljs-addition-bg: #1e2a1e;
+  --hljs-deletion: #f48771;
+  --hljs-deletion-bg: #2a1e1e;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,6 +98,20 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar,
+.article-card,
+.footer,
+.skill-tag,
+.crypto-page .price-bar,
+.crypto-page .stat-item,
+.crypto-page .interval-bar,
+.crypto-page .chart-wrap,
+.crypto-page .orderbook,
+.crypto-page .trades-panel {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 #app {
@@ -347,14 +422,14 @@ body {
 }
 
 .article-content th {
-  background: #f5f3f0;
+  background: var(--border-light);
   font-weight: 600;
   color: var(--text);
 }
 
 .article-content code {
-  background: #f5f3f0;
-  color: var(--accent);
+  background: var(--border-light);
+  color: var(--accent-hover);
   padding: 0.2em 0.45em;
   border-radius: 3px;
   font-size: 0.88em;
@@ -362,7 +437,8 @@ body {
 }
 
 .article-content pre {
-  background: #2d2a27;
+  background: var(--hljs-bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1.25rem;
   overflow-x: auto;
@@ -371,11 +447,53 @@ body {
 
 .article-content pre code {
   background: none;
-  color: #e0d7cc;
+  color: var(--hljs-text);
   padding: 0;
   font-size: 0.84rem;
   font-family: var(--font-mono);
 }
+
+/* === Syntax highlighting classes === */
+.article-content .hljs-keyword,
+.article-content .hljs-selector-tag { color: var(--hljs-keyword); }
+
+.article-content .hljs-string,
+.article-content .hljs-selector-attr { color: var(--hljs-string); }
+
+.article-content .hljs-comment,
+.article-content .hljs-quote { color: var(--hljs-comment); font-style: italic; }
+
+.article-content .hljs-function,
+.article-content .hljs-title.function_ { color: var(--hljs-function); }
+
+.article-content .hljs-number,
+.article-content .hljs-literal { color: var(--hljs-number); }
+
+.article-content .hljs-title,
+.article-content .hljs-section { color: var(--hljs-title); }
+
+.article-content .hljs-attr,
+.article-content .hljs-variable { color: var(--hljs-attr); }
+
+.article-content .hljs-tag,
+.article-content .hljs-name { color: var(--hljs-tag); }
+
+.article-content .hljs-meta { color: var(--hljs-meta); }
+
+.article-content .hljs-built_in,
+.article-content .hljs-type { color: var(--hljs-builtin); }
+
+.article-content .hljs-selector-class { color: var(--hljs-selector-class); }
+
+.article-content .hljs-addition { color: var(--hljs-addition); background: var(--hljs-addition-bg); }
+
+.article-content .hljs-deletion { color: var(--hljs-deletion); background: var(--hljs-deletion-bg); }
+
+.article-content .hljs-emphasis { font-style: italic; }
+
+.article-content .hljs-strong { font-weight: 700; }
+
+.article-content .hljs-link { text-decoration: underline; }
 
 .article-content strong { font-weight: 700; color: var(--text); }
 
@@ -385,7 +503,7 @@ body {
   margin: 1rem 0;
   background: var(--accent-light);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  color: #6b5a54;
+  color: var(--text-muted);
 }
 
 .article-content img {
@@ -730,6 +848,32 @@ body {
 
 .crypto-page .bt-stat b.up { color: var(--green); }
 .crypto-page .bt-stat b.down { color: #e74c3c; }
+
+/* === 页面过渡动画 === */
+.page-view {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+.page-view.page-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Hero 渐变标题 === */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, #c084fc 50%, var(--accent-hover) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
 
 /* === 响应式 === */
 @media (max-width: 900px) {

@@ -6,6 +6,11 @@ import { calcMA, backtest } from '../composables/ma.js'
 
 const { price, changePercent24h, high24h, low24h, volume24h, connected, bids, asks, trades } = useOKX()
 
+const visible = ref(false)
+onMounted(() => {
+  requestAnimationFrame(() => { visible.value = true })
+})
+
 const chartContainer = ref(null)
 const chartLoading = ref(false)
 const btStats = ref({ totalReturn: 0, winRate: 0, trades: 0, maxDrawdown: 0 })
@@ -59,24 +64,33 @@ async function loadChart(bar, days, count) {
   chartLoading.value = false
 }
 
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
+
 onMounted(async () => {
   await nextTick()
   if (!chartContainer.value) return
 
+  const textMuted = cssVar('--text-muted') || '#999'
+  const borderColor = cssVar('--border') || '#e8e4e0'
+  const greenColor = cssVar('--green') || '#52b788'
+  const accentColor = cssVar('--accent') || '#d4836c'
+
   chart = createChart(chartContainer.value, {
     width: chartContainer.value.clientWidth,
     height: 500,
-    layout: { background: { type: ColorType.Solid, color: 'transparent' }, textColor: '#5a7a9a' },
-    grid: { vertLines: { color: 'rgba(0,240,255,0.04)' }, horzLines: { color: 'rgba(0,240,255,0.04)' } },
-    rightPriceScale: { borderColor: 'rgba(0,240,255,0.1)', scaleMargins: { top: 0.05, bottom: 0.25 } },
-    timeScale: { borderColor: 'rgba(0,240,255,0.1)', timeVisible: true },
-    crosshair: { mode: 1, vertLine: { color: 'rgba(0,240,255,0.2)', style: 2 }, horzLine: { color: 'rgba(0,240,255,0.2)', style: 2 } },
+    layout: { background: { type: ColorType.Solid, color: 'transparent' }, textColor: textMuted },
+    grid: { vertLines: { color: borderColor + '40' }, horzLines: { color: borderColor + '40' } },
+    rightPriceScale: { borderColor: borderColor + '60', scaleMargins: { top: 0.05, bottom: 0.25 } },
+    timeScale: { borderColor: borderColor + '60', timeVisible: true },
+    crosshair: { mode: 1, vertLine: { color: borderColor, style: 2 }, horzLine: { color: borderColor, style: 2 } },
   })
 
   candleSeries = chart.addSeries(CandlestickSeries, {
-    upColor: '#00e676', downColor: '#ff4757',
-    borderUpColor: '#00e676', borderDownColor: '#ff4757',
-    wickUpColor: '#00e676', wickDownColor: '#ff4757',
+    upColor: greenColor, downColor: '#e74c3c',
+    borderUpColor: greenColor, borderDownColor: '#e74c3c',
+    wickUpColor: greenColor, wickDownColor: '#e74c3c',
   })
   volumeSeries = chart.addSeries(HistogramSeries, {
     priceFormat: { type: 'volume' },
@@ -86,12 +100,12 @@ onMounted(async () => {
 
   // 均线
   ma5Series = chart.addSeries(LineSeries, {
-    color: '#00f0ff', lineWidth: 1.5,
+    color: accentColor, lineWidth: 1.5,
     priceLineVisible: false, lastValueVisible: true,
     crosshairMarkerVisible: false,
   })
   ma20Series = chart.addSeries(LineSeries, {
-    color: '#bd93f9', lineWidth: 1.5,
+    color: '#8b5cf6', lineWidth: 1.5,
     priceLineVisible: false, lastValueVisible: true,
     crosshairMarkerVisible: false,
   })
@@ -150,7 +164,7 @@ function timeAgo(ts) {
 </script>
 
 <template>
-  <div class="container crypto-page">
+  <div class="container crypto-page page-view" :class="{ 'page-visible': visible }">
     <h1 class="section-title">Crypto</h1>
 
     <!-- 价格条 -->
