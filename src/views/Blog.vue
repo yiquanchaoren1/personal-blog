@@ -25,13 +25,13 @@ function formatDate(dateStr) {
         共 {{ posts.length }} 篇文章
       </p>
       <ScrollReveal v-for="post in posts" :key="post.id">
-        <article class="article-card">
+        <article class="article-card" data-tilt data-magnetic>
           <h2>
             <router-link :to="`/blog/${post.id}`">{{ post.title }}</router-link>
           </h2>
           <div class="article-meta">
             <span>{{ formatDate(post.date) }}</span>
-            <span>·</span>
+            <span>&middot;</span>
             <span>阅读约 {{ getReadingTime(post.content).readingTime }} 分钟</span>
           </div>
           <p class="article-summary">{{ post.summary }}</p>

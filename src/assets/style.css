@@ -860,6 +860,52 @@ body {
   transform: translateY(0);
 }
 
+/* === 点击涟漪 === */
+.click-ripple {
+  position: fixed;
+  z-index: 9997;
+  border-radius: 50%;
+  pointer-events: none;
+  background: var(--accent);
+  opacity: 0.5;
+  animation: rippleAnim 0.6s ease-out forwards;
+}
+
+@keyframes rippleAnim {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* === 3D 卡片倾斜 === */
+[data-tilt] {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card-glare {
+  transition: opacity 0.4s ease;
+}
+
+/* === 文字拆分动画 === */
+.split-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  animation: charIn 0.5s ease forwards;
+}
+
+@keyframes charIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === 视差滚动 === */
+.parallax-slow {
+  will-change: transform;
+}
+.parallax-fast {
+  will-change: transform;
+}
+
 /* === Hero 渐变标题 === */
 .hero-gradient {
   background: linear-gradient(135deg, var(--accent) 0%, #c084fc 50%, var(--accent-hover) 100%);
@@ -874,6 +920,16 @@ body {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
+/* === View Transitions API (progressive enhancement) === */
+::view-transition-old(root) {
+  animation: 0.25s ease both vt-fade-out;
+}
+::view-transition-new(root) {
+  animation: 0.35s ease both vt-fade-in;
+}
+@keyframes vt-fade-out { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes vt-fade-in { from { opacity: 0; transform: translateY(6px); } }
 
 /* === 响应式 === */
 @media (max-width: 900px) {
