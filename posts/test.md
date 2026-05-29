@@ -9,13 +9,7 @@ summary: test1
 
 
 
-### ![1780061002705](C:\Users\Lemon tree\AppData\Roaming\Typora\typora-user-images\1780061002705.png)
-
-
-
-![1780061016472](C:\Users\Lemon tree\AppData\Roaming\Typora\typora-user-images\1780061016472.png)、
-
-
+![1780061397703](E:\work\personal-blog\public\images\1780061397703.png)
 
 ```css
 .layout {

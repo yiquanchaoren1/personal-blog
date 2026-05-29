@@ -9,13 +9,7 @@ summary: test1\r
 \r
 \r
 \r
-### ![1780061002705](C:\\Users\\Lemon tree\\AppData\\Roaming\\Typora\\typora-user-images\\1780061002705.png)\r
-\r
-\r
-\r
-![1780061016472](C:\\Users\\Lemon tree\\AppData\\Roaming\\Typora\\typora-user-images\\1780061016472.png)、\r
-\r
-\r
+![1780061397703](E:\\work\\personal-blog\\public\\images\\1780061397703.png)\r
 \r
 \`\`\`css\r
 .layout {\r
