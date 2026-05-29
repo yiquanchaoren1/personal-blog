@@ -5,11 +5,10 @@ const menuOpen = ref(false)
 </script>
 
 <template>
-  <div class="scanlines"></div>
   <nav class="navbar">
     <div class="navbar-inner">
       <router-link to="/" class="navbar-brand">Lemon</router-link>
-      <button class="menu-btn" @click="menuOpen = !menuOpen">[=]</button>
+      <button class="menu-btn" @click="menuOpen = !menuOpen">&#9776;</button>
       <ul class="navbar-links" :class="{ open: menuOpen }">
         <li><router-link to="/" @click="menuOpen = false">Home</router-link></li>
         <li><router-link to="/blog" @click="menuOpen = false">Blog</router-link></li>
@@ -21,6 +20,6 @@ const menuOpen = ref(false)
   <router-view />
 
   <footer class="footer">
-    <p>// &copy; 2026 LEMON.BLOG // STATUS: ONLINE</p>
+    <p>&copy; 2026 Lemon Blog</p>
   </footer>
 </template>
