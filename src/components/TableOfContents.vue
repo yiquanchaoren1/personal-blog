@@ -42,18 +42,16 @@ const items = computed(() => {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius);
-  padding: 1rem 1.25rem;
-  margin-bottom: 1.5rem;
-  position: sticky;
-  top: 80px;
+  padding: 0.85rem 1rem;
 }
 
 .toc-title {
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .toc-list {
@@ -63,19 +61,22 @@ const items = computed(() => {
 }
 
 .toc-item {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0;
 }
 
 .toc-item a {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   text-decoration: none;
-  padding: 0.25rem 0;
+  padding: 0.2rem 0;
   border-left: 2px solid transparent;
-  padding-left: 0.75rem;
+  padding-left: 0.6rem;
   transition: all 0.2s;
   line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toc-item a:hover {
@@ -89,7 +90,7 @@ const items = computed(() => {
 }
 
 .toc-indent a {
-  padding-left: 1.5rem;
-  font-size: 0.78rem;
+  padding-left: 1.2rem;
+  font-size: 0.72rem;
 }
 </style>

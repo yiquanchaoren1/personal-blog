@@ -93,12 +93,12 @@ function formatDate(dateStr) {
         </div>
 
         <div class="post-layout">
-          <aside class="post-sidebar">
-            <TableOfContents :headings="tocHeadings" :active-id="activeHeadingId" />
-          </aside>
           <main class="post-main">
             <div class="article-content" v-html="renderedContent"></div>
           </main>
+          <aside class="post-sidebar">
+            <TableOfContents :headings="tocHeadings" :active-id="activeHeadingId" />
+          </aside>
         </div>
       </div>
 
@@ -115,14 +115,16 @@ function formatDate(dateStr) {
 <style scoped>
 .post-layout {
   display: grid;
-  grid-template-columns: 1fr 220px;
-  gap: 2rem;
+  grid-template-columns: 1fr 200px;
+  gap: 1.5rem;
   align-items: start;
 }
 
 .post-sidebar {
   position: sticky;
   top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
 .post-main {
@@ -141,7 +143,9 @@ function formatDate(dateStr) {
   .post-sidebar {
     position: static;
     order: -1;
-    margin-bottom: 1.5rem;
+    max-height: none;
+    overflow-y: visible;
+    margin-bottom: 1rem;
   }
 }
 </style>
