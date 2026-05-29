@@ -5,7 +5,7 @@ import { posts } from '../data/posts.js'
 import MarkdownIt from 'markdown-it'
 
 const route = useRoute()
-const post = computed(() => posts.find(p => p.id === Number(route.params.id)))
+const post = computed(() => posts.find(p => p.id === route.params.id))
 
 const md = new MarkdownIt({ html: true, linkify: true })
 const renderedContent = computed(() => {
