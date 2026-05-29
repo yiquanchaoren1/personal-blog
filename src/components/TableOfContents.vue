@@ -1,10 +1,12 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const props = defineProps({
   headings: { type: Array, default: () => [] },
   activeId: { type: String, default: '' },
 })
+
+const open = ref(false)
 
 function slugify(text) {
   return encodeURIComponent(text.trim().toLowerCase().replace(/\s+/g, '-'))
@@ -17,11 +19,22 @@ const items = computed(() => {
     indent: h.level === 3,
   }))
 })
+
+function scrollTo(id) {
+  open.value = false
+  const el = document.getElementById(id)
+  if (el) {
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+}
 </script>
 
 <template>
-  <nav v-if="items.length > 0" class="toc">
-    <h4 class="toc-title">目录</h4>
+  <nav v-if="items.length > 0" class="toc" :class="{ open }">
+    <button class="toc-toggle" @click="open = !open">
+      <span class="toc-toggle-label">目录</span>
+      <span class="toc-toggle-arrow" :class="{ rotated: open }">▾</span>
+    </button>
     <ul class="toc-list">
       <li
         v-for="(item, i) in items"
@@ -29,7 +42,7 @@ const items = computed(() => {
         class="toc-item"
         :class="{ 'toc-indent': item.indent, 'toc-active': activeId === item.id }"
       >
-        <a :href="'#' + item.id" @click.prevent="document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })">
+        <a :href="'#' + item.id" @click.prevent="scrollTo(item.id)">
           {{ item.text }}
         </a>
       </li>
@@ -41,27 +54,43 @@ const items = computed(() => {
 .toc {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius);
-  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  position: sticky;
+  top: 80px;
+  z-index: 10;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
 }
 
-.toc-title {
-  font-size: 0.75rem;
-  font-weight: 700;
+.toc-toggle {
+  display: none;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  justify-content: space-between;
+  align-items: center;
+  font-family: inherit;
+}
+
+.toc-toggle-arrow {
+  transition: transform 0.2s;
+  font-size: 0.7rem;
   color: var(--text-muted);
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+}
+.toc-toggle-arrow.rotated {
+  transform: rotate(180deg);
 }
 
 .toc-list {
   list-style: none;
-  padding: 0;
+  padding: 0.3rem 0;
   margin: 0;
-}
-
-.toc-item {
-  margin-bottom: 0;
 }
 
 .toc-item a {
@@ -69,9 +98,8 @@ const items = computed(() => {
   font-size: 0.76rem;
   color: var(--text-muted);
   text-decoration: none;
-  padding: 0.2rem 0;
+  padding: 0.18rem 0.75rem;
   border-left: 2px solid transparent;
-  padding-left: 0.6rem;
   transition: all 0.2s;
   line-height: 1.4;
   white-space: nowrap;
@@ -90,7 +118,37 @@ const items = computed(() => {
 }
 
 .toc-indent a {
-  padding-left: 1.2rem;
+  padding-left: 1.4rem;
   font-size: 0.72rem;
+}
+
+@media (max-width: 768px) {
+  .toc {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    top: auto;
+    max-height: none;
+    z-index: 99;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+
+  .toc-toggle {
+    display: flex;
+  }
+
+  .toc-list {
+    display: none;
+    max-height: 50vh;
+    overflow-y: auto;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .toc.open .toc-list {
+    display: block;
+  }
 }
 </style>
