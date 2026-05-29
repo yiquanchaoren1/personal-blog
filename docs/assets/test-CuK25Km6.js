@@ -1,4 +1,4 @@
----
+var e=`---
 title: test
 date: 2026-05-15
 tags: [CSS, 布局, 前端]
@@ -16,3 +16,4 @@ summary: test1
 | 适合页面级布局 | 适合组件级排列 |
 
 选择合适的工具能让你的 CSS 代码更加简洁高效。
+`;export{e as default};
