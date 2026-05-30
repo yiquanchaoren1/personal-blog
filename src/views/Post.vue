@@ -74,7 +74,7 @@ function formatDate(dateStr) {
 </script>
 
 <template>
-  <div class="page-view blog-bg" :class="{ 'page-visible': visible }">
+  <div class="page-view" :class="{ 'page-visible': visible }">
     <ReadingProgress />
 
     <div class="container">

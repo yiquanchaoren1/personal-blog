@@ -966,14 +966,15 @@ body {
 /* === 主页 Hero 大图 === */
 .hero-full {
   position: relative;
-  min-height: 60vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-image: var(--bg-hero-image);
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #000;
 }
 
 .hero-overlay {
