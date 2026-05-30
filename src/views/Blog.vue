@@ -18,7 +18,7 @@ function formatDate(dateStr) {
 </script>
 
 <template>
-  <div class="page-view" :class="{ 'page-visible': visible }">
+  <div class="page-view blog-bg" :class="{ 'page-visible': visible }">
     <div class="container">
       <h1 class="section-title">博客文章</h1>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin: -1rem 0 1.5rem;">

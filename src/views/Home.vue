@@ -39,7 +39,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="page-view" :class="{ 'page-visible': visible }">
+  <div class="page-view hero-page" :class="{ 'page-visible': visible }">
     <div class="hero container" :style="heroStyle">
       <h1 class="hero-gradient" :style="titleStyle">
         <span

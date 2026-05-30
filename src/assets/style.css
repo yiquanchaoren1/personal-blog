@@ -42,10 +42,10 @@
   --hljs-deletion-bg: #ffeef0;
 
   /* Background images */
-  --bg-hero-image: url('/images/hero-bg.jpg');
-  --bg-blog-image: url('/images/csgo-bg.jpg');
-  --bg-hero-opacity: 0.08;
-  --bg-blog-opacity: 0.05;
+  --bg-hero-image: url('/personal-blog/images/hero-bg.jpg');
+  --bg-blog-image: url('/personal-blog/images/csgo-bg.jpg');
+  --bg-hero-opacity: 0.15;
+  --bg-blog-opacity: 0.10;
 }
 
 html.dark {
@@ -942,38 +942,25 @@ body {
 @keyframes vt-fade-out { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes vt-fade-in { from { opacity: 0; transform: translateY(6px); } }
 
-/* === 背景图（可选） === */
-.hero {
-  position: relative;
-}
-
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: var(--bg-hero-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: var(--bg-hero-opacity);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.hero > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Blog 页背景图 */
-.blog-bg {
-  position: relative;
-}
-
+/* === 全页背景图 === */
+.hero-page::before,
 .blog-bg::before {
   content: '';
   position: fixed;
   inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hero-page::before {
+  background-image: var(--bg-hero-image);
+  opacity: var(--bg-hero-opacity);
+}
+
+.blog-bg::before {
   background-image: var(--bg-blog-image);
   background-size: cover;
   background-position: center;
