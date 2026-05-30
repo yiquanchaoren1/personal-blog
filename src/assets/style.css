@@ -45,7 +45,7 @@
   --bg-hero-image: url('/personal-blog/images/hero-bg.jpg');
   --bg-blog-image: url('/personal-blog/images/csgo-bg.jpg');
   --bg-hero-opacity: 0.15;
-  --bg-blog-opacity: 0.20;
+  --bg-blog-opacity: 1.0;
 }
 
 html.dark {
@@ -88,7 +88,7 @@ html.dark {
   --bg-hero-image: url('/personal-blog/images/hero-bg.jpg');
   --bg-blog-image: url('/personal-blog/images/csgo-bg.jpg');
   --bg-hero-opacity: 0.08;
-  --bg-blog-opacity: 0.12;
+  --bg-blog-opacity: 1.0;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -958,10 +958,15 @@ body {
   z-index: 0;
 }
 
-/* === 主页全屏 Hero 大图 === */
+.blog-bg .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* === 主页 Hero 大图 === */
 .hero-full {
   position: relative;
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -974,7 +979,7 @@ body {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 100%);
   z-index: 1;
 }
 
