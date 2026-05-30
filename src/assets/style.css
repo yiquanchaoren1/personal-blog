@@ -40,6 +40,12 @@
   --hljs-addition-bg: #e6ffed;
   --hljs-deletion: #600d14;
   --hljs-deletion-bg: #ffeef0;
+
+  /* Background images */
+  --bg-hero-image: none;
+  --bg-blog-image: none;
+  --bg-hero-opacity: 0.06;
+  --bg-blog-opacity: 0.04;
 }
 
 html.dark {
@@ -78,6 +84,11 @@ html.dark {
   --hljs-addition-bg: #1e2a1e;
   --hljs-deletion: #f48771;
   --hljs-deletion-bg: #2a1e1e;
+
+  --bg-hero-image: none;
+  --bg-blog-image: none;
+  --bg-hero-opacity: 0.04;
+  --bg-blog-opacity: 0.03;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -931,6 +942,275 @@ body {
 @keyframes vt-fade-out { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes vt-fade-in { from { opacity: 0; transform: translateY(6px); } }
 
+/* === 背景图（可选） === */
+.hero {
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--bg-hero-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-hero-opacity);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Blog 页背景图 */
+.blog-bg {
+  position: relative;
+}
+
+.blog-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--bg-blog-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: var(--bg-blog-opacity);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* === 归档时间线 === */
+.timeline-section {
+  margin-bottom: 2rem;
+}
+
+.timeline-year {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.timeline-month {
+  border-left: 2px solid var(--border);
+  padding-left: 1.5rem;
+  margin-left: 0.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.timeline-month h3 {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -0.56rem;
+  top: 1.3rem;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 2px solid var(--bg);
+  z-index: 1;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-date {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
+  font-family: var(--font-mono);
+}
+
+/* === 分类网格 === */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.category-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+  text-decoration: none;
+  color: var(--text);
+  position: relative;
+}
+
+.category-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.category-card--open {
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+
+.category-name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.category-count {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.category-arrow {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+}
+
+.category-card--open .category-arrow {
+  color: var(--accent);
+}
+
+.category-posts {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.category-posts .article-card {
+  margin-bottom: 0.6rem;
+  padding: 1rem;
+}
+
+/* === 标签云 === */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+
+.tag-item {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: var(--text-muted);
+  font-weight: 500;
+  user-select: none;
+}
+
+.tag-item:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.tag-item.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+
+.tag-item sup {
+  font-size: 0.7em;
+  opacity: 0.7;
+  margin-left: 2px;
+}
+
+.tag-posts {
+  margin-top: 2rem;
+}
+
+/* === 关于页 === */
+.about-hero {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+}
+
+.about-avatar {
+  width: 120px;
+  height: 120px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.2rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s;
+}
+
+.about-avatar:hover {
+  transform: scale(1.05);
+}
+
+.about-hero h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.about-bio {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto 1.25rem;
+  line-height: 1.7;
+}
+
+.about-social {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-social a {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.about-social a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
 /* === 响应式 === */
 @media (max-width: 900px) {
   .crypto-page .main-grid { grid-template-columns: 1fr; }
@@ -969,4 +1249,11 @@ body {
   .crypto-page .side-panels { grid-template-columns: 1fr; }
   .crypto-page .chart-wrap { height: 350px; }
   .crypto-page .price-bar-price { font-size: 1.3rem; }
+
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .timeline-month { padding-left: 1rem; margin-left: 0.25rem; }
+  .tag-cloud { gap: 0.4rem; }
+  .about-hero { padding: 2rem 1rem 1.5rem; }
+  .about-avatar { width: 90px; height: 90px; font-size: 2.5rem; }
+  .about-hero h1 { font-size: 1.5rem; }
 }

@@ -25,6 +25,10 @@ const menuOpen = ref(false)
       <ul class="navbar-links" :class="{ open: menuOpen }">
         <li><router-link to="/" @click="menuOpen = false">Home</router-link></li>
         <li><router-link to="/blog" @click="menuOpen = false">Blog</router-link></li>
+        <li><router-link to="/archives" @click="menuOpen = false">归档</router-link></li>
+        <li><router-link to="/categories" @click="menuOpen = false">分类</router-link></li>
+        <li><router-link to="/tags" @click="menuOpen = false">标签</router-link></li>
+        <li><router-link to="/about" @click="menuOpen = false">关于</router-link></li>
         <li><router-link to="/crypto" @click="menuOpen = false">Crypto</router-link></li>
       </ul>
     </div>

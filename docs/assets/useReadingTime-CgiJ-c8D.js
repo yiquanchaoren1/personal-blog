@@ -1,0 +1,1 @@
+var e=(e,t)=>{let n=e.__vccOpts||e;for(let[e,r]of t)n[e]=r;return n};function t(e){if(!e)return{wordCount:0,readingTime:1};let t=(e.match(/[一-鿿㐀-䶿]/g)||[]).length+e.replace(/[一-鿿㐀-䶿]/g,``).split(/\s+/).filter(Boolean).length;return{wordCount:t,readingTime:Math.max(1,Math.ceil(t/200))}}export{e as n,t};
