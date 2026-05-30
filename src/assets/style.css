@@ -42,7 +42,7 @@
   --hljs-deletion-bg: #ffeef0;
 
   /* Background images */
-  --bg-hero-image: url('/personal-blog/images/hero-bg.jpg');
+  --bg-hero-image: url('/personal-blog/images/home.jpg');
   --bg-blog-image: url('/personal-blog/images/csgo-bg.jpg');
   --bg-hero-opacity: 0.15;
   --bg-blog-opacity: 1.0;
@@ -85,7 +85,7 @@ html.dark {
   --hljs-deletion: #f48771;
   --hljs-deletion-bg: #2a1e1e;
 
-  --bg-hero-image: url('/personal-blog/images/hero-bg.jpg');
+  --bg-hero-image: url('/personal-blog/images/home.jpg');
   --bg-blog-image: url('/personal-blog/images/csgo-bg.jpg');
   --bg-hero-opacity: 0.08;
   --bg-blog-opacity: 1.0;
