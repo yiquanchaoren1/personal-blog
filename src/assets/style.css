@@ -42,10 +42,10 @@
   --hljs-deletion-bg: #ffeef0;
 
   /* Background images */
-  --bg-hero-image: none;
-  --bg-blog-image: none;
-  --bg-hero-opacity: 0.06;
-  --bg-blog-opacity: 0.04;
+  --bg-hero-image: url('/images/hero-bg.jpg');
+  --bg-blog-image: url('/images/csgo-bg.jpg');
+  --bg-hero-opacity: 0.08;
+  --bg-blog-opacity: 0.05;
 }
 
 html.dark {

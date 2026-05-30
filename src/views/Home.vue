@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { posts, skills } from '../data/posts.js'
 import { getReadingTime } from '../composables/useReadingTime.js'
 import ScrollReveal from '../components/ScrollReveal.vue'
@@ -19,13 +19,11 @@ function formatDate(dateStr) {
 }
 
 // Split title into characters for animation
-const titleChars = computed(() => '你好，我是 Lemon'.split(''))
+const titleChars = computed(() => '欢迎来到我的博客'.split(''))
 
 // Parallax on hero
 const heroStyle = ref({})
-const avatarStyle = ref({})
 const titleStyle = ref({})
-const subStyle = ref({})
 let scrollHandler = null
 
 onMounted(() => {
@@ -33,35 +31,26 @@ onMounted(() => {
     const scrollY = window.scrollY
     if (scrollY < 600) {
       heroStyle.value = { transform: `translateY(${scrollY * 0.15}px)` }
-      avatarStyle.value = { transform: `translateY(${scrollY * 0.08}px) scale(${1 - scrollY * 0.0003})` }
       titleStyle.value = { transform: `translateY(${scrollY * 0.12}px)` }
-      subStyle.value = { transform: `translateY(${scrollY * 0.1}px)`, opacity: 1 - scrollY * 0.002 }
     }
   }
   window.addEventListener('scroll', scrollHandler, { passive: true })
-})
-
-onUnmounted(() => {
-  if (scrollHandler) window.removeEventListener('scroll', scrollHandler)
 })
 </script>
 
 <template>
   <div class="page-view" :class="{ 'page-visible': visible }">
     <div class="hero container" :style="heroStyle">
-      <div class="hero-avatar-wrap" :style="avatarStyle">
-        <div class="hero-avatar">&#x1f9d1;&#x200d;&#x1f4bb;</div>
-      </div>
       <h1 class="hero-gradient" :style="titleStyle">
         <span
           v-for="(char, i) in titleChars"
           :key="i"
           class="split-char"
           :style="{ animationDelay: (i * 0.04) + 's' }"
-        >{{ char === ' ' ? ' ' : char }}</span>
+        >{{ char === ' ' ? '&nbsp;' : char }}</span>
       </h1>
-      <p class="subtitle" :style="subStyle">
-        全栈开发者，热衷于构建优雅的 Web 体验。这里记录我的技术探索与思考。
+      <p class="subtitle">
+        记录技术探索与思考，分享编程路上的点滴。
       </p>
     </div>
 
