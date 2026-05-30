@@ -26,7 +26,7 @@ const titleChars = computed(() => '欢迎来到我的博客'.split(''))
   <div class="page-view" :class="{ 'page-visible': visible }">
     <!-- Hero 大图 -->
     <section class="hero-full">
-      <img class="hero-img" src="/personal-blog/images/home.jpg" alt="hero" />
+      <img class="hero-img" src="/images/home.jpg" alt="hero" />
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <h1 class="hero-title">
