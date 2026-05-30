@@ -20,40 +20,31 @@ function formatDate(dateStr) {
 
 // Split title into characters for animation
 const titleChars = computed(() => '欢迎来到我的博客'.split(''))
-
-// Parallax on hero
-const heroStyle = ref({})
-const titleStyle = ref({})
-let scrollHandler = null
-
-onMounted(() => {
-  scrollHandler = () => {
-    const scrollY = window.scrollY
-    if (scrollY < 600) {
-      heroStyle.value = { transform: `translateY(${scrollY * 0.15}px)` }
-      titleStyle.value = { transform: `translateY(${scrollY * 0.12}px)` }
-    }
-  }
-  window.addEventListener('scroll', scrollHandler, { passive: true })
-})
 </script>
 
 <template>
-  <div class="page-view hero-page" :class="{ 'page-visible': visible }">
-    <div class="hero container" :style="heroStyle">
-      <h1 class="hero-gradient" :style="titleStyle">
-        <span
-          v-for="(char, i) in titleChars"
-          :key="i"
-          class="split-char"
-          :style="{ animationDelay: (i * 0.04) + 's' }"
-        >{{ char === ' ' ? '&nbsp;' : char }}</span>
-      </h1>
-      <p class="subtitle">
-        记录技术探索与思考，分享编程路上的点滴。
-      </p>
-    </div>
+  <div class="page-view" :class="{ 'page-visible': visible }">
+    <!-- 全屏 Hero 大图 -->
+    <section class="hero-full">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span
+            v-for="(char, i) in titleChars"
+            :key="i"
+            class="split-char"
+            :style="{ animationDelay: (i * 0.04) + 's' }"
+          >{{ char === ' ' ? '&nbsp;' : char }}</span>
+        </h1>
+        <p class="hero-subtitle">记录技术探索与思考，分享编程路上的点滴。</p>
+        <div class="hero-scroll-hint">
+          <span>向下滚动</span>
+          <span class="scroll-arrow">↓</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- 内容区 -->
     <div class="container home-grid">
       <section>
         <h2 class="section-title">技能</h2>
