@@ -102,14 +102,14 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);
+  background: transparent;
   color: var(--text);
   line-height: 1.85;
   min-height: 100vh;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .navbar,
@@ -129,6 +129,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: var(--bg);
+  transition: background-color 0.3s ease;
 }
 
 /* === 导航栏 === */
@@ -952,7 +954,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 .hero-page::before {
@@ -962,12 +964,7 @@ body {
 
 .blog-bg::before {
   background-image: var(--bg-blog-image);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   opacity: var(--bg-blog-opacity);
-  pointer-events: none;
-  z-index: -1;
 }
 
 /* === 归档时间线 === */
